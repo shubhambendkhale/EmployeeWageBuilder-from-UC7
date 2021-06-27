@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+
 public class EmployeeWageBuilder implements EmpWageInterface {
     public static final int IS_FUllTime = 1;
     public static final int IS_PARTTIME = 2;
@@ -63,6 +64,7 @@ public class EmployeeWageBuilder implements EmpWageInterface {
         }
         for (int j = 0; j < employeeWage.days_in_month; j++) {
             int day = j + 1;
+            System.out.println("Day " + day + " wage is " + daily_wage_array[j]);
             monthly_total_wage = monthly_total_wage + daily_wage_array[j];
         }
 
