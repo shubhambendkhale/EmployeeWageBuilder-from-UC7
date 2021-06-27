@@ -1,6 +1,3 @@
-/**
- * setting the values using constructor
- */
 public class EmployeeWage {
     public String companyName;
     public int max_working_hrs;
@@ -13,6 +10,7 @@ public class EmployeeWage {
         this.max_working_hrs = max_working_hrs;
         this.days_in_month = days_in_month;
         this.wage_per_hr = wage_per_hr;
+        totalWage = 0;
     }
 
     public EmployeeWage() {

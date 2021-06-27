@@ -1,4 +1,4 @@
-public class EmployeeWageBuilder {
+public class EmployeeWageBuilder implements EmpWageInterface {
     public static final int IS_FUllTime = 1;
     public static final int IS_PARTTIME = 2;
     public static final int IS_ABSENT = 0;
@@ -8,8 +8,8 @@ public class EmployeeWageBuilder {
 
     public static void main(String[] args) {
         EmployeeWageBuilder employeeWageBuilder = new EmployeeWageBuilder();
-        employeeWageBuilder.addCompanyWAge("d-mart", 100, 20, 100);
-        employeeWageBuilder.addCompanyWAge("jio-Mart", 150, 25, 110);
+        employeeWageBuilder.addCompanyWage("d-mart", 100, 20, 100);
+        employeeWageBuilder.addCompanyWage("jio-Mart", 150, 25, 110);
         employeeWageBuilder.computeEmpWage();
     }
 
@@ -17,16 +17,23 @@ public class EmployeeWageBuilder {
         employeeWages = new EmployeeWage[10];
     }
 
-    private void addCompanyWAge(String companyName, int max_working_hrs, int days_in_month, int wage_per_hr) {
+    @Override
+    public void addCompanyWage(String companyName, int max_working_hrs, int days_in_month, int wage_per_hr) {
         employeeWages[numOfCompany] = new EmployeeWage(companyName, max_working_hrs, days_in_month, wage_per_hr);
         numOfCompany++;
     }
 
-    private void computeEmpWage() {
+    @Override
+    public void computeEmpWage() {
         for (int i = 0; i < numOfCompany; i++) {
             employeeWages[i].setTotalWage(this.computeEmpWage(employeeWages[i]));
             System.out.println(employeeWages[i]);
         }
+    }
+
+    @Override
+    public int getTotalWage(String company) {
+        return getTotalWage(company);
     }
 
     private int computeEmpWage(EmployeeWage employeeWage) {
@@ -54,7 +61,6 @@ public class EmployeeWageBuilder {
         }
         for (int j = 0; j < employeeWage.days_in_month; j++) {
             int day = j + 1;
-            System.out.println("Day " + day + " wage is " + daily_wage_array[j]);
             monthly_total_wage = monthly_total_wage + daily_wage_array[j];
         }
 
